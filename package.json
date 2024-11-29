@@ -1,0 +1,24 @@
+{
+  "name": "blogspaper",
+  "version": "1.0.0",
+  "description": "my first blog",
+  "main": "server.js",
+  "type": "module",
+  
+  "scripts": {
+    "test": "test",
+    "start": "node ./src/server.js"
+
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "Exivas",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "pg": "^8.13.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.5"
+  }
+}
