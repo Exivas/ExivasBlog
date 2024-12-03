@@ -21,6 +21,30 @@ export const getAllUsers= async (req, res)=>{
 
     }
 }
+export const getUserById = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const user = await User.findByPk(id);
+        res.json(user);
+    } catch (e) {
+        res.json({ message: e.message });
+    }
+}
+
+export const updateUser = async (req, res) => {
+    try {
+        const id = req.params.id;
+        const { username, email, password } = req.body;
+        const user = await User.findByPk(id);
+        user.username = username;
+        user.email = email;
+        user.password = password;
+        await user.save();
+        res.json({ message: "User updated successfully" });
+    } catch (e) {
+        res.json({ message: e.message });
+    }
+}
 
 export const deleteUser = async (req, res) => {
     try {
