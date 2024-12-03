@@ -24,8 +24,8 @@ export const getAllUsers= async (req, res)=>{
 export const getUserById = async (req, res) => {
     try {
         const id = req.params.id;
-        const user = await User.findByPk(id);
-        res.json(user);
+        const User = await user.findByPk(id);
+        res.json(User);
     } catch (e) {
         res.json({ message: e.message });
     }
@@ -35,11 +35,11 @@ export const updateUser = async (req, res) => {
     try {
         const id = req.params.id;
         const { username, email, password } = req.body;
-        const user = await User.findByPk(id);
-        user.username = username;
-        user.email = email;
-        user.password = password;
-        await user.save();
+        const User = await user.findByPk(id);
+        User.username = username;
+        User.email = email;
+        User.password = password;
+        await User.save();
         res.json({ message: "User updated successfully" });
     } catch (e) {
         res.json({ message: e.message });
