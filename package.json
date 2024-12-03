@@ -1,5 +1,5 @@
 {
-  "name": "blogspaper",
+  "name": "BlogNewPapel",
   "version": "1.0.0",
   "description": "my first blog",
   "main": "server.js",
@@ -7,8 +7,8 @@
   
   "scripts": {
     "test": "test",
+    "dev": "node --watch ./src/server.js",
     "start": "node ./src/server.js"
-
   },
   "keywords": [
     "blog"

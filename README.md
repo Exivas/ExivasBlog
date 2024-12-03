@@ -1,2 +1,2 @@
-# blogExivas
- 
+#blogExivas
+- run npm install 
