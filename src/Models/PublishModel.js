@@ -13,7 +13,7 @@ const publish = connect.define('publish', {
     },
     content: {
         type: sq.JSONB,
-        allowNull: false
+        allowNull: true
     }
 },{tableName: 'publish', timestamps: false});
 export default publish

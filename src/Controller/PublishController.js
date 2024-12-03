@@ -2,8 +2,8 @@ import publish from '../Models/PublishModel.js';
 
 export const getAllPublish = async (req, res) => {
     try {
-        const publish = await publish.findAll({});
-        res.json(publish);
+        const publishs = await publish.findAll({});
+        res.json(publishs);
     } catch (e) {
         res.json({ message: e.message });
     }
@@ -12,8 +12,8 @@ export const getAllPublish = async (req, res) => {
 export const getPublishById = async (req, res) => {
     try {
         const id = req.params.id;
-        const publish = await publish.findByPk(id);
-        res.json(publish);
+        const publishs = await publish.findByPk(id);
+        res.json(publishs);
     } catch (e) {
         res.json({ message: e.message });
     }

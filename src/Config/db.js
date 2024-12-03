@@ -1,10 +1,12 @@
-import sq from "sequelize";
-const connect = new sq.Sequelize({
-    dialect: 'postgres',
-    host: 'localhost',
-    username: 'postgres',
-    password: 'root',
-    database: 'blog'
-})
+import { Sequelize } from "sequelize";
 
-export default connect
+// Crear la conexión a la base de datos
+const connect = new Sequelize({
+  dialect: 'postgres',
+  host: 'localhost',
+  username: 'postgres',
+  password: 'root',
+  database: 'blog'
+});
+
+export default connect;
