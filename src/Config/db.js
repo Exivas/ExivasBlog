@@ -4,6 +4,7 @@ const connect = new sq.Sequelize({
     host: 'localhost',
     username: 'postgres',
     password: 'root',
+    database: 'blog'
 })
 
 export default connect
