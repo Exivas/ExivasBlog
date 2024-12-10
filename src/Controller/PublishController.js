@@ -1,13 +1,39 @@
 import publish from '../Models/PublishModel.js';
 
 export const getAllPublish = async (req, res) => {
-    try {
-        const publishs = await publish.findAll({});
-        res.json(publishs);
-    } catch (e) {
-        res.json({ message: e.message });
-    }
+  try {
+    const publishes = await publish.findAll({});
+    const publishWithHtml = publishes.map((pub) => {
+      return {
+        ...pub.toJSON(),
+        content: convertQuillToHtml(pub.content),
+      };
+    });
+    res.json(publishWithHtml); // Enviar las publicaciones con contenido HTML
+  } catch (e) {
+    res.json({ message: e.message });
+  }
 };
+
+// Función para convertir el contenido de Quill (JSON) a HTML
+const convertQuillToHtml = (content) => {
+  let htmlContent = '';
+
+  if (content && content.ops) {
+    content.ops.forEach((op) => {
+      if (op.insert) {
+        if (typeof op.insert === 'string') {
+          htmlContent += op.insert; // Añadir texto plano
+        } else if (op.insert.image) {
+          htmlContent += `<img src="${op.insert.image}" alt="image" />`; // Añadir imagen en base64
+        }
+      }
+    });
+  }
+
+  return htmlContent; // Devolver el contenido en formato HTML
+};
+
 
 export const getPublishById = async (req, res) => {
     try {
@@ -22,6 +48,9 @@ export const getPublishById = async (req, res) => {
 export const createPublish = async (req, res) => {
     try {
         const { title, content } = req.body;
+        if (!title || !content) {
+            return res.status(400).json({ message: 'Title and content are required' });
+        }
         const newPublish = await publish.create({ title, content });
         res.status(201).json({ message: 'Publish created successfully', data: newPublish });
     } catch (error) {

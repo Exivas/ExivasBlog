@@ -18,7 +18,7 @@ router.delete('/users/:id', deleteUser);
 router.get('/publish', getAllPublish);
 router.get('/publish/:id', getPublishById);
 router.put('/publish/:id',auth, isAdmin, updatePublish);
-router.post('/publish',auth, isAdmin, createPublish);
+router.post('/publish',/*auth, isAdmin,*/ createPublish);
 router.delete('/publish/:id',auth, isAdmin, deletePublish);
 
 export default router;
