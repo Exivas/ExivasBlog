@@ -8,7 +8,7 @@
     "test": "test",
     "dev": "node --watch --env-file .env ./src/server.js",
     "start": "node ./src/server.js",
-    "mg":"node --env-file .env ./src/Config/dbTruncate.js"
+    "mg": "node --env-file .env ./src/Config/dbTruncate.js"
   },
   "keywords": [
     "blog"
