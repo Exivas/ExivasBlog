@@ -12,7 +12,7 @@ const publish = connect.define('publish', {
         allowNull: false
     },
     content: {
-        type: sq.JSONB,
+        type: sq.TEXT(),
         allowNull: true
     }, 
     createdAt: {

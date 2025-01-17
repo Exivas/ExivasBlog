@@ -3,36 +3,12 @@ import publish from '../Models/PublishModel.js';
 export const getAllPublish = async (req, res) => {
   try {
     const publishes = await publish.findAll({});
-    const publishWithHtml = publishes.map((pub) => {
-      return {
-        ...pub.toJSON(),
-        content: convertQuillToHtml(pub.content),
-      };
-    });
-    res.json(publishWithHtml); // Enviar las publicaciones con contenido HTML
+    res.json(publishes); 
   } catch (e) {
     res.json({ message: e.message });
   }
 };
 
-// Función para convertir el contenido de Quill (JSON) a HTML
-const convertQuillToHtml = (content) => {
-  let htmlContent = '';
-
-  if (content && content.ops) {
-    content.ops.forEach((op) => {
-      if (op.insert) {
-        if (typeof op.insert === 'string') {
-          htmlContent += op.insert; // Añadir texto plano
-        } else if (op.insert.image) {
-          htmlContent += `<img src="${op.insert.image}" alt="image" />`; // Añadir imagen en base64
-        }
-      }
-    });
-  }
-
-  return htmlContent; // Devolver el contenido en formato HTML
-};
 
 
 export const getPublishById = async (req, res) => {

@@ -16,9 +16,9 @@ export const registerUser = async (req, res) => {
 }
 
 export const loginUser = async (req, res) => {
-    const { email, password } = req.body;
+    const { username, password } = req.body;
     
-    const users = await user.findOne({ where: { email } });
+    const users = await user.findOne({ where: { username } });
 
     if (!users) {
         return res.status(401).json({ message: 'Invalid credentials' });
@@ -63,11 +63,12 @@ export const getUserById = async (req, res) => {
 export const updateUser = async (req, res) => {
     try {
         const id = req.params.id;
-        const { username, email, password } = req.body;
+        const { username, email, password, role } = req.body;
         const User = await user.findByPk(id);
         User.username = username;
         User.email = email;
         User.password = password;
+        User.role = role;
         await User.save();
         res.json({ message: "User updated successfully" });
     } catch (e) {

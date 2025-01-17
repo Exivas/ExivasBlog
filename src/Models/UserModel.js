@@ -4,7 +4,7 @@ import sq from "sequelize"
 
 const user = connect.define('users', {
     id: {
-        type: sq.INTEGER,
+    type: sq.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
